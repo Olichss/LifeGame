@@ -27,7 +27,6 @@ func NewUniverse() Universe {
 	return u
 }
 
-// Seed заполняет вселенную случайными живыми клетками.
 func (u Universe) Seed() {
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < (width * height / 4); i++ {
@@ -43,15 +42,11 @@ func normilizeCoord(x, size int) int {
 }
 
 func (u Universe) Alive(x, y int) bool {
-	// x = (x + width) % width
-	// y = (y + height) % height
-
 	x = normilizeCoord(x, width)
 	y = normilizeCoord(y, height)
 	return u[y][x]
 }
 
-// Neighbors подсчитывает прилегающие живые клетки.
 func (u Universe) Neighbors(x, y int) int {
 	n := 0
 	for v := -1; v <= 1; v++ {
